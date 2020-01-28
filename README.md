@@ -16,7 +16,7 @@ To build and deploy the controller
 export IMG=`some ecr repository`
 export IAMROLEARN=`the iam role arn created above`
 
-mkdir ~/go
+mkdir -p ~/go
 export GOPATH=~/go
 export GOFLAGS="-mod=vendor"
 go get github.com/awslabs/amazon-apigateway-ingress-controller
