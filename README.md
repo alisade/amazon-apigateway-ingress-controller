@@ -16,6 +16,16 @@ To build and deploy the controller
 export IMG=`some ecr repository`
 export IAMROLEARN=`the iam role arn created above`
 
+mkdir ~/go
+export GOPATH=~/go
+export GOFLAGS="-mod=vendor"
+go get github.com/awslabs/amazon-apigateway-ingress-controller
+cd ~/go/src/github.com/awslabs/amazon-apigateway-ingress-controller
+curl --silent --location -o /tmp/kb.tgz https://github.com/kubernetes-sigs/kubebuilder/releases/download/v2.2.0/kubebuilder_2.2.0_linux_amd64.tar.gz
+tar xf /tmp/kb.tgz -C /tmp
+sudo mkdir /usr/local/kubebuilder
+sudo mv /tmp/kubebuilder*/bin /usr/local/kubebuilder
+
 make docker-build
 make docker-push
 make deploy
